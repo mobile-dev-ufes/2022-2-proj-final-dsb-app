@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">dsb-app</string>
+    <string name="app_name">App rastreamento DSB</string>
+    <string name="first_fragment">First Fragment</string>
+    <string name="second_fragment">Second Fragment</string>
+    <string name="third_fragment">Third Fragment</string>
+
+    <string name="input_key">Chave Secreta</string>
+    <string name="login_button">Entrar</string>
+
 </resources>
