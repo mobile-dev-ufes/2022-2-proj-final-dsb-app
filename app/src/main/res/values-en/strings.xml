@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">dsb-app</string>
+    <string name="sos_message">SOS</string>
+    <string name="settings_title">Settings</string>
+    <string name="tracker_switch_on">YES</string>
+    <string name="tracker_switch_off">NO</string>
+    <string name="label_tracker">Turn on Tracker</string>
+</resources>
