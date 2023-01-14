@@ -1,12 +1,12 @@
-package com.example.dsb_app.views
+package com.example.apptrackingv2.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.dsb_app.R
-import com.example.dsb_app.databinding.SosFragmentBinding
+import com.example.apptrackingv2.R
+import com.example.apptrackingv2.databinding.SosFragmentBinding
 
 
 class SOSFragment : Fragment() {

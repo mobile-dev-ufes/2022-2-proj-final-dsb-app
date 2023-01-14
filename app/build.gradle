@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.dsb_app'
+    namespace 'com.example.apptrackingv2'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.dsb_app"
+        applicationId "com.example.apptrackingv2"
         minSdk 16
         targetSdk 32
         versionCode 1
