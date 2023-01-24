@@ -1,5 +1,9 @@
-package com.example.dsb_app.views
+package com.example.apptrackingv2.views
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +15,13 @@ import com.example.dsb_app.databinding.VeloFragmentBinding
 class VeloFragment : Fragment() {
 
     private lateinit var binding: VeloFragmentBinding
+
+    private val locationReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val speed = intent?.getDoubleExtra("speed", 0.0)
+            binding.label.text = speed.toString() + "nós"
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,9 +36,20 @@ class VeloFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupData()
+        registerReceiver()
+    }
+
+    private fun registerReceiver() {
+        val filter = IntentFilter("location_update")
+        context?.registerReceiver(locationReceiver, filter)
     }
 
     private fun setupData() {
         binding.label.text = getString(R.string.second_fragment)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        context?.unregisterReceiver(locationReceiver)
     }
 }

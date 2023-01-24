@@ -1,4 +1,4 @@
-package com.example.dsb_app.views
+package com.example.apptrackingv2.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,9 +26,12 @@ class SOSFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupData()
+
     }
 
     private fun setupData() {
-        binding.label.text = getString(R.string.first_fragment)
+        binding.sosText.text = getString(R.string.first_fragment)
     }
+
+
 }
