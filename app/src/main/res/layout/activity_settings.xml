@@ -5,51 +5,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/return_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/settings_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:gravity="center"
         android:text="@string/settings_title"
-        android:textSize="30sp"
+        android:textSize="44sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/return_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--A LINHA ENTRIES É PARA ADICIONAR OS DADOS
-     ESTATICAMENTE, REMOVÊ-LA AO CONECTAR O DB-->
+
 
     <Switch
         android:id="@+id/tracker_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:text="@string/label_tracker"
+        android:textSize="16sp"
         android:showText="true"
         android:textOff="@string/tracker_switch_off"
         android:textOn="@string/tracker_switch_on"
+        app:layout_constraintTop_toBottomOf="@id/settings_title"
+        android:layout_marginTop="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settings_title"
-        android:thumb="@drawable/thumb1"
-        android:track="@drawable/track"
-         />
+        />
 
+
+
+    <!--A LINHA ENTRIES É PARA ADICIONAR OS DADOS
+     ESTATICAMENTE, REMOVÊ-LA AO CONECTAR O DB-->
     <Spinner
         android:id="@+id/settings_spinner"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_height="44dp"
         android:entries="@array/dsb_list"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tracker_switch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_teams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/settings_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

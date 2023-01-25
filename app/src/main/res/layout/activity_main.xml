@@ -4,74 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarDefaultDelayBeforeFade="800"
+    android:scrollbarFadeDuration="800"
+    android:scrollbarSize="40dp"
     tools:context=".MainActivity">
 
-
-    <!--A LINHA ENTRIES É PARA ADICIONAR OS DADOS
-     ESTATICAMENTE, REMOVÊ-LA AO CONECTAR O DB-->
-
-    <TextView
-        android:id="@+id/settings_title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:gravity="center"
-        android:text="@string/settings_title"
-        android:textSize="44sp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/tracker_layout"
-        app:layout_constraintTop_toBottomOf="@id/settings_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/button_sos_test"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/label_tracker"
-            android:textSize="22sp"
-            android:layout_marginRight="20sp"/>
+            android:text="@string/sos_message" />
 
-        <Switch
-            android:id="@+id/tracker_switch"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/button_settings_test"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:showText="true"
-            android:textOff="@string/tracker_switch_off"
-            android:textOn="@string/tracker_switch_on"
-            android:thumb="@drawable/thumb1"
-            android:track="@drawable/track"
-            />
-
+            android:text="@string/settings_title" />
     </LinearLayout>
-
-    <Switch
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:showText="true"
-        android:textOff="@string/tracker_switch_off"
-        android:textOn="@string/tracker_switch_on"
-
-/>
-    <Spinner
-        android:id="@+id/settings_spinner"
-        android:layout_width="300dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="40dp"
-        android:entries="@array/dsb_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tracker_layout"
-         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
