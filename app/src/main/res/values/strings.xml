@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">App rastreamento DSB</string>
-    <string name="first_fragment">First Fragment</string>
-    <string name="second_fragment">Second Fragment</string>
-    <string name="third_fragment">Third Fragment</string>
-
+    <string name="first_fragment">Primeiro Fragmento</string>
+    <string name="second_fragment">Segundo Fragmento</string>
+    <string name="third_fragment">Terceiro Fragmento</string>
     <string name="input_key">Chave Secreta</string>
     <string name="login_button">Entrar</string>
+    <string name="sos_message">SOS</string>
+    <string name="settings_title">Configurações</string>
+    <string name="tracker_switch_on">SIM</string>
+    <string name="tracker_switch_off">NÃO</string>
+    <string name="label_tracker">Ligar rastreador</string>
 
+    <string-array name="dsb_list">
+        <item>TIME 1</item>
+        <item>TIME 2</item>
+        <item>TIME 3</item>
+        <item>TIME 4</item>
+        <item>TIME 5</item>
+
+    </string-array>
 </resources>
