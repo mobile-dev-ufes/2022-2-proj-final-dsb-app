@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">dsb-app</string>
+    <string name="app_name">dsb_mobile</string>
+
+    <string name="input_key">Chave Secreta</string>
+    <string name="login_button">Entrar</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="barcos_na_competicao">Barcos na competição</string>
 </resources>
