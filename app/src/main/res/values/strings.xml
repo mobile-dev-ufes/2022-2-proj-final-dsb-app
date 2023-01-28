@@ -10,6 +10,8 @@
     <string name="tracker_switch_on">SIM</string>
     <string name="tracker_switch_off">NÃO</string>
     <string name="label_tracker">Ligar rastreador</string>
+    <string name="teams_title">TIMES</string>
+    <string name="velocity_text">0 nós</string>
 
     <string-array name="dsb_list">
         <item>TIME 1</item>

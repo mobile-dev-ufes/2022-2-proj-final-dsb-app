@@ -5,6 +5,7 @@
     <string name="first_fragment">First Fragment</string>
     <string name="second_fragment">Second Fragment</string>
     <string name="third_fragment">Third Fragment</string>
+    <string name="teams_title">TEAMS</string>
 
     <string name="input_key">Secret Key</string>
     <string name="login_button">Sign in</string>
@@ -13,4 +14,5 @@
     <string name="tracker_switch_on">YES</string>
     <string name="tracker_switch_off">NO</string>
     <string name="label_tracker">Turn on tracker</string>
+    <string name="velocity_text">0 nós</string>
 </resources>

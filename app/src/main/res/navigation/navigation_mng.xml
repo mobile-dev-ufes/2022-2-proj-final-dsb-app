@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_controller"
+    app:startDestination="@id/configFragment">
+
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.example.apptrackingv2.view.TeamFragment"
+        android:label="TeamFragment"
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_teamFragment_to_configFragment"
+            app:destination="@id/configFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/configFragment"
+        android:name="com.example.dsb_app.ConfigActivity"
+        android:label="ConfigFragment"
+        tools:layout="@layout/activity_config" >
+        <action
+            android:id="@+id/action_configFragment_to_teamFragment"
+            app:destination="@id/teamFragment" />
+    </fragment>
+
+
+</navigation>
