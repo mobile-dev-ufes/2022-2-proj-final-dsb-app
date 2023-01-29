@@ -6,16 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".ui.ConfigActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/list_item" />
 
-    <TextView
-        android:id="@+id/text_main2"
+    <!--<TextView
+        android:id="@+id/teams_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lista de barcos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/teams_title"
+        android:textSize="40sp"
+        android:layout_marginTop="80dp"
+        />
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/boats_scroll"
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="32dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/teams_title">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            &lt;!&ndash;RecyclerViews should be located here&ndash;&gt;
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_boat"
+                android:layout_width="wrap_content"
+                android:layout_height="450dp"
+                android:overScrollMode="never"
+                tools:listitem="@layout/boat_item" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test test"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="50sp"
+        app:layout_constraintTop_toBottomOf="@+id/boats_scroll"
+        />
+-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
