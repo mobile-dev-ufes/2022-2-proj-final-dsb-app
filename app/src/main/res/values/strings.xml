@@ -5,4 +5,5 @@
     <string name="login_button">Entrar</string>
     <string name="configuracoes">Configurações</string>
     <string name="barcos_na_competicao">Barcos na competição</string>
+    <string name="sos_message">SOS</string>
 </resources>

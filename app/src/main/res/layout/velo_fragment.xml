@@ -7,16 +7,7 @@
     android:background="@android:color/black">
 
     <TextView
-        android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_velo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0 nós"
