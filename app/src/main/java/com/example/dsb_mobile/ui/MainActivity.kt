@@ -11,6 +11,10 @@ import com.example.dsb_mobile.R
 import com.example.dsb_mobile.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
 
+/**
+ * The MainActivity class is responsible for displaying the tabs for the different screens in the app.
+ * It also handles the navigation to different screens and the inflating of the layout.
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
@@ -25,11 +29,11 @@ class MainActivity : AppCompatActivity() {
         setupViewPager()
 
 
-
-
     }
 
-
+    /**
+     * The onCreateOptionsMenu function is used to create the options menu (Teams, Settings).
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
@@ -38,13 +42,13 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_item1 -> {
-                // Está indo para a tela de configuracao, mas tem que passar por login primeiro
+                // Going to the settings screen, but needs to login first
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 return true
             }
             R.id.menu_item2 -> {
-                // Indo para a tela de barcos que estão participando da competição
+                // Going to boat's competition list
                 val intent = Intent(this, BoatsActivity::class.java)
                 startActivity(intent)
                 return true
@@ -53,7 +57,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // funcoes responsaveis pela navegacao das telas pelo TAB
+    /**
+     * The setupViewPager function is used to set up the navetagion by TAB.
+     */
     private fun setupViewPager() {
         binding.viewPager.apply {
             adapter = ViewPagerAdapter(supportFragmentManager, binding.tabLayout.tabCount)
@@ -61,6 +67,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * The setupTabLayout function is used to set up the tab layout.
+     */
     private fun setupTabLayout() {
         binding.tabLayout.apply {
             addTab(this.newTab().setText("SOS"))

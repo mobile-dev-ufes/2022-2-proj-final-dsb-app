@@ -9,7 +9,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.*
 
-class LocationViewModel: ViewModel() {
+/**
+ * A ViewModel class that provides the last GPSValues using MutableLiveData.
+ * @property lastGPSValues A MutableLiveData instance that holds the last GPSValues.
+ * @property fusedLocationProvider A FusedLocationProviderClient instance for location services.
+ * @property locationRequest A LocationRequest object to set the location update parameters.
+ * @property locationCallback A LocationCallback object that receives location updates.
+ */
+class LocationViewModel : ViewModel() {
     var lastGPSValues = MutableLiveData<GPSValues?>()
     private var fusedLocationProvider: FusedLocationProviderClient? = null
     private val locationRequest: LocationRequest = LocationRequest.create().apply {
@@ -30,6 +37,10 @@ class LocationViewModel: ViewModel() {
         }
     }
 
+    /**
+     * Method to start location updates.
+     * @param context A Context instance.
+     */
     fun startLocationUpdates(context: Context) {
         fusedLocationProvider = LocationServices.getFusedLocationProviderClient(context)
 
@@ -44,6 +55,10 @@ class LocationViewModel: ViewModel() {
         }
     }
 
+    /**
+     * Method to stop location updates.
+     * @param context A Context instance.
+     */
     fun stopLocationUpdates(context: Context) {
         if (ContextCompat.checkSelfPermission(
                 context,

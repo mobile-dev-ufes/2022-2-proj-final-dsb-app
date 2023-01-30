@@ -10,11 +10,12 @@ import androidx.fragment.app.Fragment
 import com.example.dsb_mobile.R
 import com.example.dsb_mobile.databinding.SosFragmentBinding
 
-
+/**
+ * Fragment class to handle SOS feature, a button that blinks and call for help when clicked
+ */
 class SOSFragment : Fragment() {
 
     private lateinit var binding: SosFragmentBinding
-    var toggle = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +30,9 @@ class SOSFragment : Fragment() {
 
         setupData()
 
+        /**
+         * Set on click listener for the SOS button to change background color
+         */
         var isRunning = false
         val buttonSos = binding.buttonSos
         binding.buttonSos.setOnClickListener {
@@ -59,7 +63,9 @@ class SOSFragment : Fragment() {
         }
     }
 
-
+    /**
+     * Method to setup the data for the fragment
+     */
     private fun setupData() {
         binding.sosText.text = getString(R.string.first_fragment)
     }
