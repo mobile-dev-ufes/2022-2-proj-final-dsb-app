@@ -2,6 +2,8 @@ package com.example.dsb_mobile.ui
 
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -13,11 +15,14 @@ import com.example.dsb_mobile.viewmodel.LocationViewModel
 class ConfigActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConfigBinding
     private val locationModel = LocationViewModel()
+    private lateinit var preferences: ConfigPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         binding.switchButton.setOnCheckedChangeListener{ _, isChecked ->
             if (isChecked) {
@@ -35,7 +40,24 @@ class ConfigActivity : AppCompatActivity() {
                 locationModel.stopLocationUpdates(this)
             }
         }
+        preferences=ConfigPreferences(this) //salvar dados de user
+
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                preferences.setString("TEAM",selectedItem)
+                Toast.makeText(applicationContext, "Selected: ${preferences.getString("TEAM")}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+
+
+
     }
+
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
