@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         // carrega as telas e o layout
         setupTabLayout()
         setupViewPager()
+
+
+
+
     }
 
 
