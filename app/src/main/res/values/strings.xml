@@ -16,10 +16,13 @@
     <string-array name="dsb_list">
         <item></item>
         <item>Solares</item>
+        <item>Babitonga</item>
+        <item>Fernando Amorim"</item>
         <item>Hurakan</item>
-        <item>Arariboia</item>
-        <item>Zetine Solar</item>
-        <item>Reis do Sol</item>
+        <item>Vento Sul</item>
+        <item>Leviatã</item>
+        <item>Zetine</item>
+        <item>Solaris</item>
 
     </string-array>
 </resources>

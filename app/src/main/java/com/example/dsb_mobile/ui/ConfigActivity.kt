@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -64,6 +65,15 @@ class ConfigActivity : AppCompatActivity() {
 
         preferences = ConfigPreferences(this) //setting the context of the preference
 
+        // Get the saved "TEAM" preference
+        val savedTeam = preferences.getString("TEAM")
+
+        // Get the index of the saved "TEAM" in the spinner's adapter
+        val savedTeamIndex = (binding.spinner.adapter as ArrayAdapter<String>).getPosition(savedTeam)
+
+        // Set the saved "TEAM" as the selected item in the spinner
+        binding.spinner.setSelection(savedTeamIndex)
+
         // Set an OnItemSelectedListener for the spinner
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             // When an item is selected, update the preference and TextView with the selected item
@@ -76,12 +86,13 @@ class ConfigActivity : AppCompatActivity() {
             ) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 preferences.setString("TEAM", selectedItem)
-                binding.testPreference.text = selectedItem
+                binding.testPreference.text = preferences.getString("TEAM")
             }
 
             // Empty implementation for when no item is selected (needed to use "object" class)
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
+
 
 
     }
