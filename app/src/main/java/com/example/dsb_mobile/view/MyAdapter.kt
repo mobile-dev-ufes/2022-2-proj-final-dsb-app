@@ -44,8 +44,8 @@ class MyAdapter(private val newsList: ArrayList<com.example.dsb_mobile.data.mode
         // Glide.with(holder.itemView.context).load(imageUrl).into(holder.imageView)
 
         //lib used to set a image from a URL
-        Glide.with(holder.itemView.context).load(currentItem.imageUrl).into(holder.imageView)
-        holder.tvHeading.text = currentItem.heading
+        Glide.with(holder.itemView.context).load(currentItem.image).into(holder.imageView)
+        holder.tvHeading.text = currentItem.title
 
     }
 

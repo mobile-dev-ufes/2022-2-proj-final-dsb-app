@@ -7,4 +7,4 @@ package com.example.dsb_mobile.data.model
  * @property imageUrl a URL string pointing to an image associated with the Boat object.
  * @property heading a string representing a title for the Boat object.
  */
-data class BoatModel(var id : Int, var imageUrl:String, var heading : String)
+data class BoatModel(var id : String, var image:String, var title : String, var color: String)
