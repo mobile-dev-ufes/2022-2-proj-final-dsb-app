@@ -51,20 +51,6 @@ class ConfigActivity : AppCompatActivity() {
         binding.switchButton.setOnCheckedChangeListener { _, isChecked ->
             AppData.statusTracking = isChecked
             AppData.numberBoat = preferences.getString("POSITION")
-//            if (isChecked) {
-//                if (TrackingUtility.requestLocationPermission(this)) {
-//                    locationModel.startLocationUpdates(this)
-//                    // Look the MutableLiveData lastGPSValues and update the UI
-//                    locationModel.lastGPSValues.observe(this, Observer {
-//                        binding.textoCoordenadas.text = "lat: " + it?.latitude +
-//                                "\nlong: " + it?.longitude +
-//                                "\nspeed: " + it?.speed
-//                    })
-//                }
-//            } else {
-//                binding.textoCoordenadas.text = "GPS desligado"
-//                locationModel.stopLocationUpdates(this)
-//            }
         }
 
         preferences = ConfigPreferences(this) //setting the context of the preference

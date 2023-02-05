@@ -73,7 +73,13 @@ class SOSFragment : Fragment() {
         // Observes the MutableLiveData lastGPSValues and updates the UI
         locationModel.lastGPSValues.observe(viewLifecycleOwner, Observer {
             if(AppData.statusTracking){
-                val resultGPS = "[0%s,%.6f,%.6f,%.2f,0];01/01/99 00:41:02".format(Locale.US, AppData.numberBoat,it?.latitude ?: 0.0, it?.longitude ?: 0.0, it?.speed ?: 0.0)
+                val resultGPS = "[0%s,%.6f,%.6f,%.2f,%s];01/01/99 00:41:02"
+                    .format(Locale.US,
+                        AppData.numberBoat,
+                        it?.latitude ?: 0.0,
+                        it?.longitude ?: 0.0,
+                        it?.speed ?: 0.0,
+                        if (isRunning) "1" else "0")
                 println(resultGPS)
                 socket.emit("newinfo", resultGPS)
             }

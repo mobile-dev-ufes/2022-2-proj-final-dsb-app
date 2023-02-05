@@ -12,6 +12,8 @@
     <string name="label_tracker">Ligar rastreador</string>
     <string name="teams_title">TIMES</string>
     <string name="velocity_text">0 nós</string>
+    <string name="rastreador_ligado">Rastreador ligado</string>
+    <string name="configuracoes">Configurações</string>
 
     <string-array name="dsb_list">
         <item></item>

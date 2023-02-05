@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="Configurações"
+        android:text="@string/configuracoes"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         android:id="@+id/switch_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ligar rastreador"
+        android:text="@string/rastreador_ligado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:layout_width="210dp"
         android:layout_height="45dp"
         app:cardCornerRadius="4dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,16 +55,6 @@
             android:entries="@array/dsb_list"
             app:layout_constraintTop_toBottomOf="@+id/switch1" />
     </com.google.android.material.card.MaterialCardView>
-
-<!--    <TextView-->
-<!--        android:id="@+id/texto_coordenadas"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="GPS desligado"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/materialCardView"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/switch_button" />-->
 
 
     <TextView
