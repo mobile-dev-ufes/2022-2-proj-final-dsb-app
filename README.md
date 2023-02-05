@@ -22,6 +22,36 @@ para a disciplina de desenvolvimento mobile da Ufes (Universidade Federal do Esp
 
 ## :rocket: Entendendo melhor as funcionalidades e particularidades
 
+<h1 align="center">
+<img alt="DSB Logo" src=github/sos.png width="200px" />
+</h1>
+
+<h1 align="center">
+<img alt="DSB Logo" src=github/velocity.png width="200px" />
+</h1>
+
+<h1 align="center">
+<img alt="DSB Logo" src=github/menu-options.png width="200px" />
+</h1>
+
+<h1 align="center">
+<img alt="DSB Logo" src=github/login.png width="200px" />
+</h1>
+
+<h1 align="center">
+<img alt="DSB Logo" src=github/settings.png width="200px" />
+</h1>
+
+<h1 align="center">
+<img alt="DSB Logo" src=github/teams.png width="200px" />
+</h1>
+
+## 🏁 Como executar
+
+
+## 📽️ Vídeo demonstrativo
+* <a href="https://youtu.be/p1qgmu9adfg"> App rastreamento do Desafio Solar Brasil (DSB)</a>
+
 ## 🧠 Autores
 
 | [<img src="https://avatars.githubusercontent.com/u/21970707?v=4" width=115><br><sub>Emerson Laranja</sub>](https://github.com/EmersonLaranja) | [<img src="https://avatars.githubusercontent.com/u/54721131?v=4" width=115><br><sub>André Cunha</sub>](https://github.com/andreocunha) |
