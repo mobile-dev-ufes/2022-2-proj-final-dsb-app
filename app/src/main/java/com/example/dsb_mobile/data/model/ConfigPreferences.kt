@@ -1,4 +1,4 @@
-package com.example.dsb_mobile.ui
+package com.example.dsb_mobile.data.model
 
 import android.content.Context
 import android.content.SharedPreferences

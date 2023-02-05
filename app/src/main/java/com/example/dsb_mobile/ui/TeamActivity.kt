@@ -30,7 +30,7 @@ import kotlinx.coroutines.withContext
  *
  * @author Example Developer
  */
-class BoatsActivity : AppCompatActivity() {
+class TeamActivity : AppCompatActivity() {
     private lateinit var newRecylerview: RecyclerView
     lateinit var imageId: Array<Int>
     lateinit var heading: Array<String>

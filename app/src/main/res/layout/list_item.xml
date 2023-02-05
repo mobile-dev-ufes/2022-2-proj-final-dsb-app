@@ -28,7 +28,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="Candidate Biden Called Saudi Arabia a Paeefr eefr"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"

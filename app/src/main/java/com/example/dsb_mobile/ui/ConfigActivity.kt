@@ -7,11 +7,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.example.dsb_mobile.data.model.AppData
+import com.example.dsb_mobile.data.model.ConfigPreferences
 import com.example.dsb_mobile.databinding.ActivityConfigBinding
 import com.example.dsb_mobile.utils.Constants
-import com.example.dsb_mobile.utils.TrackingUtility
 import com.example.dsb_mobile.viewmodel.LocationViewModel
 
 /**

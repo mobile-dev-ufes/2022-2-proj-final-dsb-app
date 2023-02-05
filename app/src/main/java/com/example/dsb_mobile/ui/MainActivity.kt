@@ -6,7 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dsb_app.ViewPagerAdapter
+import com.example.dsb_mobile.view.ViewPagerAdapter
 import com.example.dsb_mobile.R
 import com.example.dsb_mobile.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_item2 -> {
                 // Going to boat's competition list
-                val intent = Intent(this, BoatsActivity::class.java)
+                val intent = Intent(this, TeamActivity::class.java)
                 startActivity(intent)
                 return true
             }

@@ -39,9 +39,6 @@ class MyAdapter(private val newsList: ArrayList<com.example.dsb_mobile.data.mode
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val currentItem = newsList[position]
-        //holder.titleImage.setImageResource(currentItem.titleImage)
-        //var imageUrl="https://www.google.com/url?sa=i&url=http%3A%2F%2Ft1.gstatic.com%2Flicensed-image%3Fq%3Dtbn%3AANd9GcRYQC_v5bnrF4ScRVeYCGnfux2kt2GmjBXug_ezsi_i8aPyEMjxilhyQ_qzesxMmRFL9CjdoMZAMnefZDo&psig=AOvVaw2BMkX-CDFF1HOanhjpQsB9&ust=1675165167145000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCLC9-taa7_wCFQAAAAAdAAAAABAE"
-        // Glide.with(holder.itemView.context).load(imageUrl).into(holder.imageView)
 
         //lib used to set a image from a URL
         Glide.with(holder.itemView.context).load(currentItem.image).into(holder.imageView)

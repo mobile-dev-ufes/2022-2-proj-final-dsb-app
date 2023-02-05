@@ -63,7 +63,6 @@ class SOSFragment : Fragment() {
             }
         }
 
-//        val socket = IO.socket("http://192.168.15.43:4000")
         val socket = IO.socket("http://server-solares-solaris.herokuapp.com")
         socket.connect()
 

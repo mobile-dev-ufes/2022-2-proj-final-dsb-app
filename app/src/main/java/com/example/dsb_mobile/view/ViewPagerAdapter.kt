@@ -1,4 +1,4 @@
-package com.example.dsb_app
+package com.example.dsb_mobile.view
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
