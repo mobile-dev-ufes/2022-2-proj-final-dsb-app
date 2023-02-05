@@ -1,4 +1,4 @@
-package com.example.apptrackingv2.views
+package com.example.dsb_mobile.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,8 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.dsb_mobile.R
 import com.example.dsb_mobile.databinding.SosFragmentBinding
+import com.example.dsb_mobile.viewmodel.LocationViewModel
+import com.github.nkzawa.socketio.client.IO
+import androidx.lifecycle.Observer
+import com.example.dsb_mobile.data.model.AppData
+import java.util.*
 
 /**
  * Fragment class to handle SOS feature, a button that blinks and call for help when clicked
@@ -16,6 +20,8 @@ import com.example.dsb_mobile.databinding.SosFragmentBinding
 class SOSFragment : Fragment() {
 
     private lateinit var binding: SosFragmentBinding
+    private val locationModel = LocationViewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,8 +33,6 @@ class SOSFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setupData()
 
         /**
          * Set on click listener for the SOS button to change background color
@@ -56,18 +60,24 @@ class SOSFragment : Fragment() {
                 handler.post(runnable)
             } else {
                 isRunning = false
-
             }
-
-
         }
-    }
 
-    /**
-     * Method to setup the data for the fragment
-     */
-    private fun setupData() {
-        binding.sosText.text = getString(R.string.first_fragment)
+//        val socket = IO.socket("http://192.168.15.43:4000")
+        val socket = IO.socket("http://server-solares-solaris.herokuapp.com")
+        socket.connect()
+
+        // Instantiates the LocationViewModel
+        locationModel.startLocationUpdates(requireContext())
+
+        // Observes the MutableLiveData lastGPSValues and updates the UI
+        locationModel.lastGPSValues.observe(viewLifecycleOwner, Observer {
+            if(AppData.statusTracking){
+                val resultGPS = "[0%s,%.6f,%.6f,%.2f,0];01/01/99 00:41:02".format(Locale.US, AppData.numberBoat,it?.latitude ?: 0.0, it?.longitude ?: 0.0, it?.speed ?: 0.0)
+                println(resultGPS)
+                socket.emit("newinfo", resultGPS)
+            }
+        })
     }
 
 

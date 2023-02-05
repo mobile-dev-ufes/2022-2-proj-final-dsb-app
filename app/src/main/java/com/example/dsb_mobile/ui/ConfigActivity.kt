@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.example.dsb_mobile.data.model.AppData
 import com.example.dsb_mobile.databinding.ActivityConfigBinding
 import com.example.dsb_mobile.utils.Constants
 import com.example.dsb_mobile.utils.TrackingUtility
@@ -44,23 +45,26 @@ class ConfigActivity : AppCompatActivity() {
         binding = ActivityConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.switchButton.isChecked = AppData.statusTracking
 
         //When switch is moved, request the location and speed of the boat
         binding.switchButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                if (TrackingUtility.requestLocationPermission(this)) {
-                    locationModel.startLocationUpdates(this)
-                    // Look the MutableLiveData lastGPSValues and update the UI
-                    locationModel.lastGPSValues.observe(this, Observer {
-                        binding.textoCoordenadas.text = "lat: " + it?.latitude +
-                                "\nlong: " + it?.longitude +
-                                "\nspeed: " + it?.speed
-                    })
-                }
-            } else {
-                binding.textoCoordenadas.text = "GPS desligado"
-                locationModel.stopLocationUpdates(this)
-            }
+            AppData.statusTracking = isChecked
+            AppData.numberBoat = preferences.getString("POSITION")
+//            if (isChecked) {
+//                if (TrackingUtility.requestLocationPermission(this)) {
+//                    locationModel.startLocationUpdates(this)
+//                    // Look the MutableLiveData lastGPSValues and update the UI
+//                    locationModel.lastGPSValues.observe(this, Observer {
+//                        binding.textoCoordenadas.text = "lat: " + it?.latitude +
+//                                "\nlong: " + it?.longitude +
+//                                "\nspeed: " + it?.speed
+//                    })
+//                }
+//            } else {
+//                binding.textoCoordenadas.text = "GPS desligado"
+//                locationModel.stopLocationUpdates(this)
+//            }
         }
 
         preferences = ConfigPreferences(this) //setting the context of the preference
@@ -86,7 +90,11 @@ class ConfigActivity : AppCompatActivity() {
             ) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 preferences.setString("TEAM", selectedItem)
+                preferences.setString("POSITION", position.toString())
                 binding.testPreference.text = preferences.getString("TEAM")
+                if(position.toString() != savedTeamIndex.toString()){
+                    binding.switchButton.isChecked = false
+                }
             }
 
             // Empty implementation for when no item is selected (needed to use "object" class)

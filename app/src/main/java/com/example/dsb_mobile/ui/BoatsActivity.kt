@@ -1,37 +1,23 @@
 package com.example.dsb_mobile.ui
 
 import android.os.Bundle
-import android.widget.Toast
-import retrofit2.Call
-import retrofit2.Callback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dsb_mobile.R
 import com.example.dsb_mobile.data.model.BoatModel
-import com.example.dsb_mobile.utils.NetworkUtils
 import com.example.dsb_mobile.view.MyAdapter
-import com.google.gson.annotations.SerializedName
-import retrofit2.Response
-import retrofit2.http.GET
-
-
-data class Boats(
-    @SerializedName("id")
-    var id: String,
-    @SerializedName("title")
-    var title: String,
-    @SerializedName("image")
-    var image: String,
-    @SerializedName("color")
-    var color: String
-)
-
-interface Endpoint {
-
-    @GET("boats.json")
-    fun getPosts(): Call<List<Boats>>
-}
+import com.google.android.gms.security.ProviderInstaller
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.net.HttpURLConnection
+import java.net.URL
+import javax.net.ssl.SSLContext
+import javax.net.ssl.SSLEngine
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.withContext
 
 /**
  * Class that implements an activity to display a list of boats using RecycleView.
@@ -60,40 +46,44 @@ class BoatsActivity : AppCompatActivity() {
         newRecylerview.layoutManager = LinearLayoutManager(this)
         newRecylerview.setHasFixedSize(true) // set fixed size for optimization purposes
 
-        getData()
-    }
+        // To fix SSL problem in Android < 4.4
+        ProviderInstaller.installIfNeeded(applicationContext)
+        val sslContext: SSLContext = SSLContext.getInstance("TLSv1.2")
+        sslContext.init(null, null, null)
+        val engine: SSLEngine = sslContext.createSSLEngine()
 
 
-    private fun getData() {
-        val retrofitClient = NetworkUtils
-            .getRetrofitInstance("https://andreocunha.github.io/upload_files_test/")
+        // Perform network call on a background thread
+        GlobalScope.launch(Dispatchers.IO) {
+            val response =
+                getDataFromApi("https://andreocunha.github.io/upload_files_test/boats.json")
 
-        val endpoint = retrofitClient.create(Endpoint::class.java)
-        val callback = endpoint.getPosts()
+            // parse response to a list of BoatModel objects
+            val boats = parseResponse(response)
 
-        callback.enqueue(object : Callback<List<Boats>> {
-            override fun onFailure(call: Call<List<Boats>>, t: Throwable) {
-                Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onResponse(call: Call<List<Boats>>, response: Response<List<Boats>>) {
-                response.body()?.forEach {
-//                    println(it.title)
-                    boatArray.add(
-                        BoatModel(
-                            it.id,
-                            "https://dsbrastreio.com.br/logos/" + it.image,
-                            it.title,
-                            it.color
-                        )
-                    )
-                }
-                println(boatArray)
-                // Set an adapter for the RecyclerView with the provided boatArray data
+            // add the boats to the boatArray
+            boatArray.addAll(boats)
+            println(boatArray)
+            withContext(Dispatchers.Main) {
                 newRecylerview.adapter = MyAdapter(boatArray)
             }
-        })
+        }
     }
 
+    private suspend fun getDataFromApi(url: String): String {
+        val connection = URL(url).openConnection() as HttpURLConnection
+        connection.requestMethod = "GET"
+        val inputStream = connection.inputStream
+        val response = inputStream.bufferedReader().readText()
+        inputStream.close()
+        connection.disconnect()
+        return response
+    }
+
+    private fun parseResponse(response: String): ArrayList<BoatModel> {
+        val gson = Gson()
+        val type = object : TypeToken<ArrayList<BoatModel>>() {}.type
+        return gson.fromJson(response, type)
+    }
 
 }

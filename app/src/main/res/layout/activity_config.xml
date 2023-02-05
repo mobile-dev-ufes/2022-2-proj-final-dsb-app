@@ -56,15 +56,15 @@
             app:layout_constraintTop_toBottomOf="@+id/switch1" />
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/texto_coordenadas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GPS desligado"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_button" />
+<!--    <TextView-->
+<!--        android:id="@+id/texto_coordenadas"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="GPS desligado"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/materialCardView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/switch_button" />-->
 
 
     <TextView

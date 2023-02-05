@@ -3,8 +3,8 @@ package com.example.dsb_app
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.apptrackingv2.views.SOSFragment
-import com.example.apptrackingv2.views.VeloFragment
+import com.example.dsb_mobile.ui.SOSFragment
+import com.example.dsb_mobile.ui.VeloFragment
 
 /**
  * ViewPagerAdapter to handle fragments for a view pager

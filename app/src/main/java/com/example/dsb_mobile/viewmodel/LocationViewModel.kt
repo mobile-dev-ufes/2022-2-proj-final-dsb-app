@@ -7,6 +7,7 @@ import android.os.Looper
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.dsb_mobile.data.model.GPSValues
 import com.google.android.gms.location.*
 
 /**

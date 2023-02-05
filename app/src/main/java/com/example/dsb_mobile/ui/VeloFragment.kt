@@ -1,4 +1,4 @@
-package com.example.apptrackingv2.views
+package com.example.dsb_mobile.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.dsb_mobile.databinding.VeloFragmentBinding
 import com.example.dsb_mobile.viewmodel.LocationViewModel
+import java.util.*
 
 /**
  * A Fragment that displays the speed from GPS location updates.
@@ -35,7 +36,7 @@ class VeloFragment : Fragment() {
 
         // Observes the MutableLiveData lastGPSValues and updates the UI
         locationModel.lastGPSValues.observe(viewLifecycleOwner, Observer {
-            binding.label.text = it?.speed.toString()
+            binding.speedText.text = "%.2f nós".format(Locale.US, it?.speed)
         })
     }
 }

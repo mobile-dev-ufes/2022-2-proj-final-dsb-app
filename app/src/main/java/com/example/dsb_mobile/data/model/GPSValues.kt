@@ -1,4 +1,4 @@
-package com.example.dsb_mobile.viewmodel
+package com.example.dsb_mobile.data.model
 
 /**
 GPSValues data class to hold latitude, longitude and speed values
