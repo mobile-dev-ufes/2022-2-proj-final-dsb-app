@@ -31,13 +31,10 @@ para a disciplina de desenvolvimento mobile da Ufes (Universidade Federal do Esp
 
 ## 🏁 Como executar
 
-O aplicativo ainda não está disponível na playstore ☹️, mas você pode executar usando o **emulador do Android Studio**:
+O aplicativo ainda não está disponível na playstore ☹️, mas você pode executar **baixando o apk**:
 
-1. Baixe o Android Studio através deste [link](https://developer.android.com/studio)
-2. Faça o clone deste projeto
-3. Ao abrir o Android Studio, seleciona a opção "Project from Version Control" e cole o link copiado do github
-4. No menu superior, ao canto direito, selecione a opção "Device Manager" e crie um dispositivo, com android igual ou superior a 4.1, para emular a aplicação
-5. Após esse processo, basta clicar em "Run" e aguardar a aplicação ser executada.
+1. Clique neste [link](https://github.com/mobile-dev-ufes/proj-final-dsb-app/releases/download/1.0.0/DSBapp.apk);
+2. Adicione o apk dentro do seu Android e clique em "Instalar" no gerenciador de arquivo.
 
 ## :rocket: Entendendo melhor as funcionalidades
 
