@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">dsb-app</string>
+    <string name="app_name">App rastreamento DSB</string>
+    <string name="first_fragment">Primeiro Fragmento</string>
+    <string name="second_fragment">Segundo Fragmento</string>
+    <string name="third_fragment">Terceiro Fragmento</string>
+    <string name="input_key">Chave Secreta</string>
+    <string name="login_button">Entrar</string>
+    <string name="sos_message">SOS</string>
+    <string name="settings_title">Configurações</string>
+    <string name="tracker_switch_on">SIM</string>
+    <string name="tracker_switch_off">NÃO</string>
+    <string name="label_tracker">Ligar rastreador</string>
+    <string name="teams_title">TIMES</string>
+    <string name="velocity_text">0 nós</string>
+    <string name="rastreador_ligado">Rastreador ligado</string>
+    <string name="configuracoes">Configurações</string>
+
+    <string-array name="dsb_list">
+        <item></item>
+        <item>Solares</item>
+        <item>Babitonga</item>
+        <item>Fernando Amorim"</item>
+        <item>Hurakan</item>
+        <item>Vento Sul</item>
+        <item>Leviatã</item>
+        <item>Zetine</item>
+        <item>Solaris</item>
+
+    </string-array>
 </resources>

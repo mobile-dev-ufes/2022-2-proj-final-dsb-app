@@ -1,4 +1,4 @@
-package com.example.dsb_app
+package com.example.dsb_mobile
 
 import org.junit.Test
 
