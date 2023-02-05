@@ -9,6 +9,7 @@
 
 
 ## 📜 Sobre o projeto
+
 * O aplicativo foi feito em **Android com Kotlin** e roda em dispositivos com **Android 4.1 ou superior**;
 
 * Ele pega a posição (latitude e longitude) do celular a cada segundo e envia para um servidor com Socket.io, atualizando as informações em tempo real em um site construído para a competição;
@@ -26,6 +27,7 @@
 * Aplicativo desenvolvido para a competição do Desafio Solar Brasil (DSB) e 
 para a disciplina de desenvolvimento mobile da Ufes (Universidade Federal do Espírito Santo).
 <hr>
+
 
 ## 🏁 Como executar
 
@@ -256,6 +258,8 @@ Glide.with(holder.itemView.context).load(currentItem.image).into(holder.imageVie
 
 ## 📽️ Vídeo demonstrativo
 * <a href="https://youtu.be/p1qgmu9adfg"> App rastreamento do Desafio Solar Brasil (DSB)</a>
+=======
+## :rocket: Entendendo melhor as funcionalidades e particularidades
 
 ## 🧠 Autores
 
