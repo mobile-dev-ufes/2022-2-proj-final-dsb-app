@@ -47,7 +47,7 @@ Para esse projeto, nós temos 2 atores principais que chamarei de **piloto** e *
 <hr>
 
 ### Tela SOS
-Ao abrir o aplicativo, o competidor que está pilotando o barco se depara com esse grande botão escrito "SOS" que ao clicá-lo é disparado um sinal para o servidor, através do protocolo WebSocket, onde é sinalizado que este barco está passando por alguma situação anormal. Para sinalizar que o botão foi clicado e, consequentemente, o piloto solicitou ajuda, na versão mobile as cores do botão alternam do fundo branco e texto vermelho para fundo vermelho e texto branco a cada segundo. O mesmo sinal poderá ser captado pelo organizador na versão web, onde o barco e o nome do time receberão um fundo vermelho.
+Ao abrir o aplicativo, o competidor que está pilotando o barco se depara com esse grande botão escrito "SOS" que ao clicá-lo é disparado um sinal para o servidor, através do protocolo WebSocket, onde é sinalizado que este barco está passando por alguma situação anormal. Para sinalizar que o botão foi clicado e, consequentemente, o piloto solicitou ajuda, na versão mobile as cores do botão alternam do fundo branco e texto vermelho para fundo vermelho e texto branco a cada segundo. O mesmo sinal poderá ser captado pelo organizador na versão web, onde o barco e o nome do time receberão um fundo vermelho. Ao clicar novamente, o botão para de "piscar" e nenhum sinal é emitido.
 <div align="center">
 <img alt="DSB Logo" src=github/sos.png width="200px" />
 </div>
@@ -76,15 +76,183 @@ Quando um organizador faz o login, ele é redirecionado para está tela onde ele
 Somente após essa configuração, cada piloto irá receber um dispositivo do seu time. Não podendo alterar as informações da tela settings.
 <div align="center">
 <img alt="DSB Logo" src=github/settings.png width="200px" />
-</idv>
+</div>
 
 ### Tela TEAMS
-Tela com a visualização de cada time que está participando da competição.
+Tela com a visualização de cada time que está participando da competição. Tela construída usando o conceito de RecycleView para cada time. Assim criamos um modelo que é usada várias vezes, mudando apenas seu conteúdo.
 <div align="center">
 <img alt="DSB Logo" src=github/teams.png width="200px" />
 </div>
 
 ## 👨🏾‍💻 Particulariedades da aplicação
+
+### Tela SOS
+Usamos o método do `Handler()` chamado `postDelayed` para definir que a cada 1000 ms, desde que o botão foi apertado, iremos alterar a cor do botão:
+```kotlin
+
+binding.buttonSos.setOnClickListener {
+  if (!isRunning) {
+      isRunning = true
+      val colors = intArrayOf(Color.RED, Color.WHITE)
+      var index = 0
+      val handler = Handler()
+      val runnable = object : Runnable {
+          override fun run() {
+              buttonSos.setBackgroundColor(colors[index % colors.size])
+              buttonSos.setTextColor(colors[(index + 1) % colors.size])
+              view.setBackgroundColor(colors[(index + 1) % colors.size])
+              index++
+              if (isRunning) {
+                  handler.postDelayed(this, 1000)
+              }
+
+          }
+      }
+      handler.post(runnable)
+  } else {
+      isRunning = false
+  }
+}
+```
+
+Este código abaixo cria uma conexão socket com o servidor "http://server-solares-solaris.herokuapp.com" e inicia as atualizações de localização utilizando o contexto atual.
+
+Se o status de rastreamento (AppData.statusTracking) estiver ativo, o código formata os dados GPS como uma string e essa string é emitida como um evento "newinfo" pelo socket para o servidor se o botão estiver ativo pedindo ajuda (verificamos isso com a variável **isRunning** usada na funcionalidade de cima).
+
+```kotlin
+val socket = IO.socket("http://server-solares-solaris.herokuapp.com")
+socket.connect()
+
+// Instantiates the LocationViewModel
+locationModel.startLocationUpdates(requireContext())
+
+// Observes the MutableLiveData lastGPSValues and updates the UI
+locationModel.lastGPSValues.observe(viewLifecycleOwner, Observer {
+    if(AppData.statusTracking){
+        val resultGPS = "[0%s,%.6f,%.6f,%.2f,%s];01/01/99 00:41:02"
+            .format(Locale.US,
+                AppData.numberBoat,
+                it?.latitude ?: 0.0,
+                it?.longitude ?: 0.0,
+                it?.speed ?: 0.0,
+                if (isRunning) "1" else "0")
+        println(resultGPS)
+        socket.emit("newinfo", resultGPS)
+    }
+})
+```
+
+### Tela Velo (Velocidade)
+Nesta tela nós escutamos as mudanças de cada informações emitidas (latitude, longitude e velocidade) num intervalo definido em LocationViewModel. Assim conseguimos ter a velocidade mudando em tela, fazemos isso através do Observer abaixo:
+
+```kotlin
+locationModel.lastGPSValues.observe(viewLifecycleOwner, Observer {
+    binding.speedText.text = "%.2f nós".format(Locale.US, it?.speed)
+})
+```
+
+### Menu inicial
+Aqui não teve muito segredo! Criamos um elemento de menu (main_menu.xml), definimos dois itens e na main fazemos o controle do caminho a ser redirecionado ao clicar cada uma das opções:
+
+```kotlin
+override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    menuInflater.inflate(R.menu.main_menu, menu)
+    return true
+}
+
+override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
+        R.id.menu_item1 -> {
+            // Going to the settings screen, but needs to login first
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            return true
+        }
+        R.id.menu_item2 -> {
+            // Going to boat's competition list
+            val intent = Intent(this, BoatsActivity::class.java)
+            startActivity(intent)
+            return true
+        }
+        else -> return super.onOptionsItemSelected(item)
+    }
+}
+
+```
+### Tela Settings
+Aqui temos algo bem interessante! Escutamos quando um item do spinner for selecionado, a partir da seleção nós guardamos o nome e posição desse time selecionado (usando SharedPreference). 
+
+```kotlin
+
+binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+    // When an item is selected, update the preference and TextView with the selected item
+
+    override fun onItemSelected(
+        parent: AdapterView<*>,
+        view: View,
+        position: Int,
+        id: Long
+    ) {
+        val selectedItem = parent.getItemAtPosition(position).toString()
+        preferences.setString("TEAM", selectedItem)
+        preferences.setString("POSITION", position.toString())
+        if (position.toString() != savedTeamIndex.toString()) {
+            binding.switchButton.isChecked = false
+        }
+    }
+
+    // Empty implementation for when no item is selected (needed to use "object" class)
+    override fun onNothingSelected(parent: AdapterView<*>) {}
+}
+
+```
+Assim, ao fechar o aplicativo e voltarmos na tela, o elemento selecionado será o que guardamos, fazemos essa verificação logo no começo do onCreate deste elemento:
+```kotlin
+
+// Get the saved "TEAM" preference
+val savedTeam = preferences.getString("TEAM")
+
+// Get the index of the saved "TEAM" in the spinner's adapter
+val savedTeamIndex =
+    (binding.spinner.adapter as ArrayAdapter<String>).getPosition(savedTeam)
+
+// Set the saved "TEAM" as the selected item in the spinner
+binding.spinner.setSelection(savedTeamIndex)
+```
+
+### Tela TEAMS
+O que temos de diferente aqui é que para resolver problemas de segurança SSL em dispositivos Android com versões antigas, é feita a instalação de um provedor SSL. Em seguida, é criado um objeto SSLContext para criptografia TLSv1.2.
+
+```kotlin
+ProviderInstaller.installIfNeeded(applicationContext)
+val sslContext: SSLContext = SSLContext.getInstance("TLSv1.2")
+sslContext.init(null, null, null)
+val engine: SSLEngine = sslContext.createSSLEngine()
+```
+
+Em seguida, é iniciada uma tarefa em segundo plano (GlobalScope.launch) para realizar uma chamada de rede. A resposta da chamada é então parseada em uma lista de objetos BoatModel e adicionada ao boatArray. Por fim, o adapter é definido para a RecyclerView, passando o boatArray como parâmetro:
+
+```kotlin
+GlobalScope.launch(Dispatchers.IO) {
+  val response =
+      getDataFromApi("https://andreocunha.github.io/upload_files_test/boats.json")
+
+  // parse response to a list of BoatModel objects
+  val boats = parseResponse(response)
+
+  // add the boats to the boatArray
+  boatArray.addAll(boats)
+  println(boatArray)
+  withContext(Dispatchers.Main) {
+      newRecylerview.adapter = MyAdapter(boatArray)
+  }
+}
+```
+
+Além disso, para injetar as informações no model de um barco, nós buscamos a imagem a partir de uma URL, com a biblioteca Glide:
+```kotlin
+Glide.with(holder.itemView.context).load(currentItem.image).into(holder.imageView)
+```
 
 ## 📽️ Vídeo demonstrativo
 * <a href="https://youtu.be/p1qgmu9adfg"> App rastreamento do Desafio Solar Brasil (DSB)</a>
