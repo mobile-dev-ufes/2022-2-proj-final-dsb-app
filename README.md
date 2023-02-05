@@ -258,8 +258,6 @@ Glide.with(holder.itemView.context).load(currentItem.image).into(holder.imageVie
 
 ## 📽️ Vídeo demonstrativo
 * <a href="https://youtu.be/p1qgmu9adfg"> App rastreamento do Desafio Solar Brasil (DSB)</a>
-=======
-## :rocket: Entendendo melhor as funcionalidades e particularidades
 
 ## 🧠 Autores
 
